@@ -1,0 +1,8 @@
+<ul nz-menu [nzMode]="'inline'">
+	<li *ngFor="let menu of left_menus" nz-menu-item [class.ant-menu-item-selected]="menu.opt==current_opt">
+		<a (click)="goUrl(menu.url,menu.module,menu.opt)">
+			<span title><i nz-icon type="{{menu.icon}}"></i>{{menu.menuName}}</span>
+		</a>
+	</li>
+</ul>
+<router-outlet></router-outlet>

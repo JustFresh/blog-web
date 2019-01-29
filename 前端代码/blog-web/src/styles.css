@@ -1,0 +1,54 @@
+/**
+ * @Author: JustFresh
+ * @Time: 2018-12-08 15:16
+ * @Version: 1.0.0
+ * @Desc: 整个AngularJS公共使用样式提取
+ */
+body{overflow-x: hidden;}
+input,textarea,select{outline:none;}
+.jf-container{width: 1180px;margin: 0 auto;}
+.pull-left{float: left;}
+.pull-right{float: right;}
+.clearfix{clear: both;}
+.jf-table{font-family: verdana,arial,sans-serif; font-size:11px; color:#333333; border-width: 1px; border-color: #e3e3e3; border-collapse: collapse;}
+.jf-table th{border-width: 1px;padding: 8px;border-style: solid;border-color: #e3e3e3;background-color: #fafafa;}
+.jf-table td{border-width: 1px; padding: 8px; border-style: solid; border-color: #e3e3e3; background-color: #ffffff;}
+nz-content.body{padding:0 50px;}
+nz-breadcrumb{margin:15px 0;}
+.ant-layout-sider{background-color: #fff !important;}
+.main{padding:24px 0; background: #fff;}
+.main > .content{padding: 0 24px; min-height: 450px;}
+.main .left-nav{width: 200px}
+.main > .content .conditions form.horizontal .form-group{float: left;margin-right: 15px;}
+.main .content .conditions form.horizontal .form-group .form-ipt,.main .content .conditions form.horizontal .form-group .form-select{height: 34px;font-size: 14px;color: rgba(0,0,0,.65);background-color: #fff;border: 1px solid #d9d9d9;border-radius: 4px;transition: all .3s;padding-left: 10px;}
+.main .content .conditions form.horizontal .form-group a.btn{border-radius: 4px;background-color: #3b9bd8;border: 1px solid #3b9bd8;display: inline-block;padding: 0px 20px;height: 34px;text-align: center;line-height: 34px;color: #fff;}
+.main .content .conditions form.horizontal .form-group a.btn:hover{background-color: #236a97;border: 1px solid #236a97;}
+.main .content .datagrid{margin-top: 20px;}
+.ant-table-bordered thead tr th{font-weight: bold;}
+.main .content .datagrid .title{background-color: #f0f2f5;border: 1px solid #e8e8e8;padding: 15px;}
+.main .content .datagrid .title h4{font-size: 20px;font-weight: bold;}
+.main .content .datagrid .title .opts button{margin-right: 10px;}
+.main .content .datagrid .title .opts button:last-child{margin-right: 0px;}
+.main .content .datagrid tbody td button{margin-right: 8px;line-height: 1.499; display: inline-block; font-weight: 400; text-align: center; touch-action: manipulation; cursor: pointer; background-image: none; border: 1px dashed #d9d9d9; white-space: nowrap; padding: 0 15px; font-size: 14px; border-radius: 4px; height: 32px; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; transition: all .3s cubic-bezier(.645,.045,.355,1); position: relative; box-shadow: 0 2px 0 rgba(0,0,0,.015); color: rgba(0,0,0,.65); background-color: #fff;}
+.main .content .datagrid tbody td button:last-child{margin-right: 0px;}
+.main .content .datagrid tbody td button:hover{background-color: #666;border: 1px solid #666;color: #fff;}
+.main .content .datagrid tbody td button.primary{border: 1px dashed #337ab7;color: #337ab7;}
+.main .content .datagrid tbody td button.primary:hover{background-color: #2e6da4;border: 1px solid #2e6da4;color: #fff;}
+.main .content .datagrid tbody td button.danger{border: 1px dashed #ac2925;color: #ac2925;}
+.main .content .datagrid tbody td button.danger:hover{background-color: #ac2925;border: 1px solid #ac2925;color: #fff;}
+.main .content .datagrid tbody td button.success{border: 1px dashed #5cb85c;color: #5cb85c;}
+.main .content .datagrid tbody td button.success:hover{background-color: #4cae4c;border: 1px solid #4cae4c;color: #fff;}
+.main .content .datagrid tbody td button.info{border: 1px dashed #5bc0de;color: #5bc0de;}
+.main .content .datagrid tbody td button.info:hover{background-color: #46b8da;border: 1px solid #46b8da;color: #fff;}
+.main .content .datagrid tbody td button.warning{border: 1px dashed #f0ad4e;color: #f0ad4e;}
+.main .content .datagrid tbody td button.warning:hover{background-color: #eea236;border: 1px solid #eea236;color: #fff;}
+
+.admin-form{}
+.admin-form .form-group{margin-bottom: 15px;}
+.admin-form .form-group .form-ipt{padding: 5px 10px;border: 1px solid #e3e3e3;height: 36px;line-height: 36px;}
+.admin-form .form-group label{font-weight: 600;width: 85px;text-align: right;margin-right: 5px;display: inline-block;}
+.admin-form .form-group .form-select{padding: 5px 10px;width: 200px;border: 1px solid #e3e3e3;height: 36px;line-height: 36px;}
+.admin-form .form-group .form-textarea{padding: 10px;border: 1px solid #e3e3e3;}
+.admin-form .form-group button{margin-right: 10px;}
+
+.article-detail .body img{max-width: 1180px;}

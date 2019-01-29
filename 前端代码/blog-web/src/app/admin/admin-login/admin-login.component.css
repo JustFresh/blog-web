@@ -1,0 +1,13 @@
+.login-bg{width: 100%;height: 100%;background:url(../../../assets/images/bg.jpg) no-repeat center center;width:100%;position: relative;}
+.login-bg .login-block{position: absolute;z-index: 2;width: 300px;height: 240px;background-color: #fff;
+	top: 50%;left: 50%;margin-top: -120px;margin-left: -150px;box-shadow: 0px 0px 20px #333;
+	border-radius: 3px 3px 0px 0px;}
+.login-bg .login-block h4{font-size: 16px;color: #666;text-align: center;height: 44px;line-height: 44px;border-bottom: 1px solid #f0f0f0;}
+.login-bg .login-block  .login-form{padding: 20px 30px;}
+.login-bg .login-block .form-group{margin-bottom: 15px;}
+.login-bg .login-block .form-group label{display: inline-block;width: 32px;
+height: 32px;background-color: #3b9bd8;line-height: 32px;text-align: center;}
+.login-bg .login-block .form-group label i{color: #fff;}
+.login-bg .login-block .form-group input{border: 1px solid #f0f0f0;height: 30px;width: 200px;
+padding-left: 8px;line-height: 30px;}
+.login-bg .login-block .form-group .login-form-button{width: 232px !important;}

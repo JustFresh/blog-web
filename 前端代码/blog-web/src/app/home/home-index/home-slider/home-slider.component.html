@@ -1,0 +1,8 @@
+<section class="slider">
+	<nz-carousel nzAutoPlay>
+		<div nz-carousel-content *ngFor="let slide of dataSet">
+			<a href="{{slide.advUrl}}"><img title="{{slide.advName}}" class="thumb" src="{{siteUrl}}{{slide.thumb}}" alt="{{slide.advName}}"/></a>
+		</div>
+	</nz-carousel>
+</section>
+<div class="clearfix"></div>

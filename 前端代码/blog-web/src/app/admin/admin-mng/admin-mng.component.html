@@ -1,0 +1,98 @@
+<nz-layout class="layout">
+	<!-- JustFresh 2018-11-28 Begin 引入统一顶部导航 -->
+	<app-admin-header></app-admin-header>
+	<!-- JustFresh 2018-11-28 End 引入统一顶部导航 -->
+	<nz-content class="body">
+		<!-- JustFresh 2018-11-28 Begin 面包屑导航 -->
+		<nz-breadcrumb>
+			<nz-breadcrumb-item><a [routerLink]="['/admin/index']" [queryParams]="{module:'index',opt:'index'}">控制台</a></nz-breadcrumb-item>
+			<nz-breadcrumb-item>操作员管理</nz-breadcrumb-item>
+        </nz-breadcrumb>
+		<!-- JustFresh 2018-11-28 End 面包屑导航 -->
+		<!-- JustFresh 2018-11-28 Begin 页面主体部分 -->
+		<nz-layout class="main">
+			<!-- JustFresh 2018-11-28 Begin 引入左侧导航菜单 -->
+			<nz-sider [nzWidth]="200">
+				<app-admin-left-nav class="left-nav"></app-admin-left-nav>
+			</nz-sider>
+			<!-- JustFresh 2018-11-28 Ends 引入左侧导航菜单 -->
+			
+			<!-- JustFresh 2018-11-29 Begin 实际当前组件展示部分 -->
+			<nz-content class="content">
+				<!-- JustFresh 2018-12-04 Begin 分页条件查询表单部分 -->
+				<div class="conditions">
+					<form class="horizontal">
+						<div class="form-group">
+							<label>用户名：</label>
+							<input type="" [(ngModel)]="username" class="form-ipt" name="username" placeholder="请输入用户名">
+						</div>
+						<div class="form-group">
+							<label>昵称：</label>
+							<input type="" [(ngModel)]="nickName" class="form-ipt" name="nickName" placeholder="请输入昵称">
+						</div>
+						<div class="form-group">
+							<label>状态：</label>
+							<select class="form-select" [(ngModel)]="status" name="status">
+								<option value="">--请选择</option>
+								<option value="1">启用</option>
+								<option value="0">禁用</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<a class="btn" (click)="searchData()"><i nz-icon type="search"></i> 搜索</a>
+						</div>
+						<div class="clearfix"></div>
+					</form>
+				</div>
+				<!-- JustFresh 2018-12-04 End 分页条件查询表单部分 -->
+				<!-- JustFresh 2018-12-04 Begin 分页表格数据部分 -->
+				<div class="datagrid">
+					<div class="title">
+						<h4 class="pull-left"><i nz-icon type="smile"></i> 操作员列表</h4>
+						<div class="opts pull-right">
+							<button nz-button nzType="default" (click)="importExcel()"><i nz-icon type="file-excel"></i>导出当前页</button>
+							<button nz-button nzType="primary" [routerLink]="['/admin/admin/add']" [queryParams]="{module:'index',opt:'admin'}"><i nz-icon type="plus"></i>添加操作员</button>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<nz-table id="adminTable" #ajaxTable nzBordered nzSize="small" nzShowSizeChanger [nzFrontPagination]="false" [nzData]="dataSet"
+					[nzLoading]="loading" [nzTotal]="total" [(nzPageIndex)]="pageNumber" [(nzPageSize)]="size" (nzPageIndexChange)="searchData()"
+					(nzPageSizeChange)="searchData(true)">
+						<thead (nzSortChange)="sort($event)" nzSingleSort>
+							<tr>
+								<th>登录名</th>
+								<th>昵称</th>
+								<th>状态</th>
+								<th>最近登录IP</th>
+								<th width="240px">操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr *ngFor="let admin of ajaxTable.data">
+								<td>{{admin.username}}</td>
+								<td>{{admin.nickName}}</td>
+								<td>
+									<nz-tag *ngIf="admin.status==1" [nzColor]="'#87d068'">启用</nz-tag>
+									<nz-tag *ngIf="admin.status==0" [nzColor]="'#f50'">禁用</nz-tag>
+								</td>
+								<td>{{admin.lastLoginIp}}</td>
+								<td>
+									<button [routerLink]="['/admin/admin/detail',admin.id]" [queryParams]="{module:'index',opt:'admin'}" class="default">查看</button>
+									<button [routerLink]="['/admin/admin/edit',admin.id]" [queryParams]="{module:'index',opt:'admin'}" class="primary">编辑</button>
+									<button (click)="delete(admin.id)" class="danger">删除</button>
+								</td>
+							</tr>
+						</tbody>
+					</nz-table>
+				</div>
+				<!-- JustFresh 2018-12-04 End 分页表格数据部分 -->
+			</nz-content>
+			<!-- JustFresh 2018-11-29 End 实际当前组件展示部分 -->
+			
+		</nz-layout>
+		<!-- JustFresh 2018-11-28 End 页面主体部分 -->
+		<!-- JustFresh 2018-11-28 Begin 引入统一底部导航 -->
+		<app-admin-footer></app-admin-footer>
+		<!-- JustFresh 2018-11-28 End 引入统一底部导航 -->
+	</nz-content>
+</nz-layout>

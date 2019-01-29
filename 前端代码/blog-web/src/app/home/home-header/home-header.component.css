@@ -1,0 +1,19 @@
+.header-split-block{height: 50px;}
+header{color: #fff;width: 100%;overflow: hidden;height: 50px;position: fixed;top: 0px;z-index: 99;background-color: #2d2d2d;}
+header .logo{margin: 13px 15px 13px 0px;font-weight: 600;}
+header .logo a{color: #fff;}
+header .nav{padding: 0px;}
+header .nav li{list-style: none;float: left;}
+header .nav li a{color: #fff;padding: 15px;display: inline-block;}
+header .nav li a.selected{background-color: #3b9bd8;}
+header .search{margin: 10px 0px 0px 50px;}
+header .search input{border: none;height: 30px;line-height: 30px;padding: 0px 8px;border-radius: 2px 0px 0px 2px;}
+header .search .btn{width: 32px;height: 32px;line-height: 32px;text-align: center;border: none;
+	background-color: #3b9bd8;color: #fff;margin-left: -30px;
+}
+header .search .btn:hover{background-color: #236a97;}
+header .btns{margin: 10px 0px;}
+header .btns a{display: inline-block;width: 90px;height: 30px;text-align: center;line-height: 30px;color: #fff;}
+header .btns a.login-btn{border: 1px dotted #FFFFFF;margin-right: 10px;}
+header .btns a.register-btn{background-color: #3b9bd8;border: 1px solid #3b9bd8;}
+header .btns a:hover{background-color: #236a97;border: 1px solid #236a97;}

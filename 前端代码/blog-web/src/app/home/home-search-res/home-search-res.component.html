@@ -1,0 +1,48 @@
+<app-home-header></app-home-header>
+<!-- JustFresh 2018-11-28 Begin 面包屑导航 -->
+<section class="jf-container bread">
+	<nz-breadcrumb>
+	  <nz-breadcrumb-item>
+		<a [routerLink]="['/home']">首页</a>
+	  </nz-breadcrumb-item>
+	  <nz-breadcrumb-item>
+		按<em>{{keyword}}</em>关键字搜索结果为：
+	  </nz-breadcrumb-item>
+	</nz-breadcrumb>
+</section>
+<!-- JustFresh 2018-11-28 End 面包屑导航 -->
+
+<!-- JustFresh 2018-11-28 Begin 搜索结果页面 -->
+<section class="jf-container">
+	<div class="list">
+		<nz-list
+			[nzDataSource]="data"
+			[nzItemLayout]="'vertical'"
+			[nzRenderItem]="item"
+			[nzPagination]="pagination"
+			[nzFooter]="footer">
+			<ng-template #item let-item>
+			  <nz-list-item [nzContent]="item.content" [nzActions]="[starAction,likeAction,msgAction]" [nzExtra]="extra">
+				<ng-template #starAction><i nz-icon type="star-o"></i> 156</ng-template>
+				<ng-template #likeAction><i nz-icon type="like-o"></i> 156</ng-template>
+				<ng-template #msgAction><i nz-icon type="message"></i> 2</ng-template>
+				<nz-list-item-meta
+				  [nzTitle]="nzTitle"
+				  [nzDescription]="item.description">
+				  <ng-template #nzTitle><a href="{{item.href}}">{{item.title}}</a></ng-template>
+				</nz-list-item-meta>
+				<ng-template #extra>
+				  <img width="272" class="thumb" alt="logo" src="../../../../assets/images/green.jpg">
+				</ng-template>
+			  </nz-list-item>
+			</ng-template>
+			<ng-template #pagination>
+			  <nz-pagination [nzPageIndex]="1" [nzTotal]="50" (nzPageIndexChange)="loadData($event)"></nz-pagination>
+			</ng-template>
+		  </nz-list>
+	</div>
+	<!-- JustFresh 2018-11-28 End 搜索结果页面 -->
+</section>
+<app-home-links></app-home-links>
+<app-home-footer></app-home-footer>
+<nz-back-top></nz-back-top>

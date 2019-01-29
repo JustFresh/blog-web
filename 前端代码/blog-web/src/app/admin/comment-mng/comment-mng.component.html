@@ -1,0 +1,84 @@
+<nz-layout class="layout">
+	<!-- JustFresh 2018-11-28 Begin 引入统一顶部导航 -->
+	<app-admin-header></app-admin-header>
+	<!-- JustFresh 2018-11-28 End 引入统一顶部导航 -->
+	<nz-content class="body">
+		<!-- JustFresh 2018-11-28 Begin 面包屑导航 -->
+		<nz-breadcrumb>
+			<nz-breadcrumb-item>控制台</nz-breadcrumb-item>
+        </nz-breadcrumb>
+		<!-- JustFresh 2018-11-28 End 面包屑导航 -->
+		<!-- JustFresh 2018-11-28 Begin 页面主体部分 -->
+		<nz-layout class="main">
+			<!-- JustFresh 2018-11-28 Begin 引入左侧导航菜单 -->
+			<nz-sider [nzWidth]="200">
+				<app-admin-left-nav class="left-nav"></app-admin-left-nav>
+			</nz-sider>
+			<!-- JustFresh 2018-11-28 Ends 引入左侧导航菜单 -->
+			<nz-content class="content">
+				<!-- JustFresh 2018-12-04 Begin 分页条件查询表单部分 -->
+				<div class="conditions">
+					<form class="horizontal">
+						<div class="form-group">
+							<label>文章：</label>
+							<input type="" class="form-ipt" name="" placeholder="请输入文章标题">
+						</div>
+						<div class="form-group">
+							<label>用户：</label>
+							<input type="" class="form-ipt" name="" placeholder="请输入用户昵称">
+						</div>
+						<div class="form-group">
+							<label>内容：</label>
+							<input type="" class="form-ipt" name="" placeholder="请输入评论内容">
+						</div>
+						<div class="form-group">
+							<a class="btn" (click)="search()"><i nz-icon type="search"></i> 搜索</a>
+						</div>
+						<div class="clearfix"></div>
+					</form>
+				</div>
+				<!-- JustFresh 2018-12-04 End 分页条件查询表单部分 -->
+				<!-- JustFresh 2018-12-04 Begin 分页表格数据部分 -->
+				<div class="datagrid">
+					<div class="title">
+						<h4 class="pull-left"><i nz-icon type="message"></i> 评论数据列表</h4>
+						<div class="opts pull-right">
+							<button nz-button nzType="default"><i nz-icon type="file-excel"></i>导出Excel</button>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<nz-table
+						#smallTable
+						nzBordered
+						[nzData]="data">
+						<thead>
+							<tr>
+								<th>姓名</th>
+								<th>昵称</th>
+								<th>年龄</th>
+								<th width="240px">操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr *ngFor="let data of smallTable.data">
+								<td>{{data.name}}</td>
+								<td>{{data.age}}</td>
+								<td>{{data.address}}</td>
+								<td>
+									<button (click)="delete()" class="default">查看</button>
+									<button (click)="delete()" class="primary">编辑</button>
+									<button (click)="delete()" class="danger">删除</button>
+								</td>
+							</tr>
+						</tbody>
+					</nz-table>
+				</div>
+				<!-- JustFresh 2018-12-04 End 分页表格数据部分 -->
+			</nz-content>
+		</nz-layout>
+		<!-- JustFresh 2018-11-28 End 页面主体部分 -->
+		<!-- JustFresh 2018-11-28 Begin 引入统一底部导航 -->
+		<app-admin-footer></app-admin-footer>
+		<!-- JustFresh 2018-11-28 End 引入统一底部导航 -->
+	</nz-content>
+</nz-layout>

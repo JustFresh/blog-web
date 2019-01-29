@@ -1,0 +1,105 @@
+<nz-layout class="layout">
+	<!-- JustFresh 2018-11-28 Begin 引入统一顶部导航 -->
+	<app-admin-header></app-admin-header>
+	<!-- JustFresh 2018-11-28 End 引入统一顶部导航 -->
+	<nz-content class="body">
+		<!-- JustFresh 2018-11-28 Begin 面包屑导航 -->
+		<nz-breadcrumb>
+			<nz-breadcrumb-item>控制台</nz-breadcrumb-item>
+        </nz-breadcrumb>
+		<!-- JustFresh 2018-11-28 End 面包屑导航 -->
+		<!-- JustFresh 2018-11-28 Begin 页面主体部分 -->
+		<nz-layout class="main">
+			<!-- JustFresh 2018-11-28 Begin 引入左侧导航菜单 -->
+			<nz-sider [nzWidth]="200">
+				<app-admin-left-nav class="left-nav"></app-admin-left-nav>
+			</nz-sider>
+			<!-- JustFresh 2018-11-28 Ends 引入左侧导航菜单 -->
+			<nz-content class="content">
+				<!-- JustFresh 2018-12-04 Begin 分页条件查询表单部分 -->
+				<div class="conditions">
+					<form class="horizontal">
+<!-- 						<div class="form-group">
+							<label>用户：</label>
+							<input type="" class="form-ipt" [(ngModel)]="username" name="username" placeholder="请输入用户名">
+						</div> -->
+						<div class="form-group">
+							<label>昵称：</label>
+							<input type="" class="form-ipt" [(ngModel)]="nickName" name="nickName" placeholder="请输入昵称">
+						</div>
+						<div class="form-group">
+							<label>手机：</label>
+							<input type="" class="form-ipt" [(ngModel)]="userPhone" name="userPhone" placeholder="请输入手机号">
+						</div>
+						<div class="form-group">
+							<label>邮箱：</label>
+							<input type="" class="form-ipt" [(ngModel)]="userEmail" name="userEmail" placeholder="请输入邮箱">
+						</div>
+						<div class="form-group">
+							<label>状态：</label>
+							<select class="form-select" [(ngModel)]="status" name="status">
+								<option value="">--请选择</option>
+								<option value="1">启用</option>
+								<option value="0">禁用</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<a class="btn" (click)="searchData()"><i nz-icon type="search"></i> 搜索</a>
+						</div>
+						<div class="clearfix"></div>
+					</form>
+				</div>
+				<!-- JustFresh 2018-12-04 End 分页条件查询表单部分 -->
+				<!-- JustFresh 2018-12-04 Begin 分页表格数据部分 -->
+				<div class="datagrid">
+					<div class="title">
+						<h4 class="pull-left"><i nz-icon type="user"></i> 用户数据列表</h4>
+						<div class="opts pull-right">
+							<button nz-button nzType="default" (click)="importExcel()"><i nz-icon type="file-excel"></i>导出当前页</button>
+							<button nz-button nzType="primary" [routerLink]="['/admin/user/add']" [queryParams]="{module:'index',opt:'user'}"><i nz-icon type="plus"></i>添加用户</button>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<nz-table id="userTable" #ajaxTable nzBordered nzSize="small" nzShowSizeChanger [nzFrontPagination]="false" [nzData]="dataSet"
+					[nzLoading]="loading" [nzTotal]="total" [(nzPageIndex)]="pageNumber" [(nzPageSize)]="size" (nzPageIndexChange)="searchData()"
+					(nzPageSizeChange)="searchData(true)">
+						<thead (nzSortChange)="sort($event)" nzSingleSort>
+							<tr>
+								<th>登录名</th>
+								<th>昵称</th>
+								<th>联系电话</th>
+								<th>邮箱</th>
+								<th>添加时间</th>
+								<th>状态</th>
+								<th width="240px">操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr *ngFor="let user of ajaxTable.data">
+								<td>{{user.username}}</td>
+								<td>{{user.nickName}}</td>
+								<td>{{user.userPhone}}</td>
+								<td>{{user.userEmail}}</td>
+								<td>{{user.createTime | date:"yyyy-MM-dd HH:mm"}}</td>
+								<td>
+									<nz-tag *ngIf="user.status==1" [nzColor]="'#87d068'">启用</nz-tag>
+									<nz-tag *ngIf="user.status==0" [nzColor]="'#f50'">禁用</nz-tag>
+								</td>
+								<td>
+									<button [routerLink]="['/admin/user/detail',user.id]" [queryParams]="{module:'index',opt:'user'}"  class="default">查看</button>
+									<button [routerLink]="['/admin/user/edit',user.id]" [queryParams]="{module:'index',opt:'user'}" class="primary">编辑</button>
+									<button (click)="delete(user.id)" class="danger">删除</button>
+								</td>
+							</tr>
+						</tbody>
+					</nz-table>
+				</div>
+				<!-- JustFresh 2018-12-04 End 分页表格数据部分 -->
+			</nz-content>
+		</nz-layout>
+		<!-- JustFresh 2018-11-28 End 页面主体部分 -->
+		<!-- JustFresh 2018-11-28 Begin 引入统一底部导航 -->
+		<app-admin-footer></app-admin-footer>
+		<!-- JustFresh 2018-11-28 End 引入统一底部导航 -->
+	</nz-content>
+</nz-layout>

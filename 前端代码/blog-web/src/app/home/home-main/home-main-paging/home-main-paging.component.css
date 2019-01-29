@@ -1,0 +1,4 @@
+.articles h4{border-bottom: 1px solid #f0f0f0;color: #3b9bd8;}
+.articles h4 span{color: #3b9bd8;display: inline-block;padding: 10px 5px;border-bottom: 2px solid #3b9bd8;margin-bottom: -1px;}
+img.thumb{width: 150px;}
+.articles .list i{margin-right: 8px;}

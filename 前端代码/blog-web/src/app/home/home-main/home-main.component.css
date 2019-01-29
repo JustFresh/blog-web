@@ -1,0 +1,12 @@
+.home-main{margin-top: 20px;}
+.tops h4{border-bottom: 1px solid #f0f0f0;color: #ff6600;}
+.tops h4 span{color: #ff6600;display: inline-block;padding: 10px 5px;border-bottom: 2px solid #FF6600;margin-bottom: -1px;}
+.tops .block{border: 1px solid #f0f0f0;padding: 10px;height: 90px;position: relative;}
+.tops .block .content{width: 190px;margin-left: 10px;}
+.tops .block h5{font-size: 14px;margin: 0px 0px 3px;padding: 0px;}
+.tops .block p{font-size: 12px;}
+.tops .block .num{color: #fff;position: absolute;right: 0px;top: 0px;z-index: 2;width: 20px;height: 20px;line-height: 20px;text-align: center;}
+.tops .block .first{background-color: #FF6600;}
+.tops .block .second{background-color: #FF9900;}
+.tops .block .third{background-color: #e8e1dc;}
+img.thumb{width: 50px;}

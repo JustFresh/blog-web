@@ -1,0 +1,16 @@
+<div class="recommends" nz-row nzGutter="24">
+	<div nz-col class="gutter-row" nzSpan="24">
+		<h4><span><i nz-icon type="smile"></i> 热门推荐</span></h4>
+		<div class="list">
+			<ul *ngIf="dataSet">
+				<li *ngFor="let article of dataSet">
+					<a [routerLink]="['/home/article',article.id]" [queryParams]="{curChannelId:article.channel.id}">
+						<span class="text">{{article.title}}</span>
+						<span class="muted">{{article.createTime | date:"yyyy-MM-dd"}}</span>
+						<span class="muted">{{article.clickNum}}点击</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>

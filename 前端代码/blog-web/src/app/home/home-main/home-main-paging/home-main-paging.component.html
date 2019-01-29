@@ -1,0 +1,26 @@
+<div class="articles" nz-row nzGutter="24">
+	<div nz-col class="gutter-row" nzSpan="24">
+		<h4><span><i nz-icon type="bars"></i> 最近发布</span></h4>
+		<div class="list">
+			<nz-list [nzDataSource]="dataSet" [nzItemLayout]="'vertical'" [nzRenderItem]="item" [nzPagination]="pagination"
+			 [nzFooter]="footer">
+				<ng-template #item let-item>
+					<nz-list-item [nzActions]="[starAction,likeAction,msgAction]" [nzExtra]="extra">
+						<ng-template #starAction><i nz-icon type="eye"></i> {{item.clickNum}}</ng-template>
+						<ng-template #likeAction><i nz-icon type="clock-circle"></i> {{item.createTime | date:"yyyy-MM-dd HH:mm"}}</ng-template>
+						<ng-template #msgAction><i nz-icon type="bars"></i> {{item.channel.channelName}}</ng-template>
+						<nz-list-item-meta [nzTitle]="nzTitle" [nzDescription]="item.abstracts">
+							<ng-template #nzTitle><a [routerLink]="['/home/article',item.id]" [queryParams]="{curChannelId:item.channel.id}">{{item.title}}</a></ng-template>
+						</nz-list-item-meta>
+						<ng-template #extra>
+							<img width="272" class="thumb" alt="logo" src="{{siteUrl}}{{item.thumb}}">
+						</ng-template>
+					</nz-list-item>
+				</ng-template>
+				<ng-template #pagination>
+					<nz-pagination [nzPageIndex]="pageNumber" [nzTotal]="total" (nzPageIndexChange)="loadData($event)"></nz-pagination>
+				</ng-template>
+			</nz-list>
+		</div>
+	</div>
+</div>

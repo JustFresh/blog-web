@@ -1,0 +1,118 @@
+<nz-layout class="layout">
+	<!-- JustFresh 2018-11-28 Begin 引入统一顶部导航 -->
+	<app-admin-header></app-admin-header>
+	<!-- JustFresh 2018-11-28 End 引入统一顶部导航 -->
+	<nz-content class="body">
+		<!-- JustFresh 2018-11-28 Begin 面包屑导航 -->
+		<nz-breadcrumb>
+			<nz-breadcrumb-item>控制台</nz-breadcrumb-item>
+        </nz-breadcrumb>
+		<!-- JustFresh 2018-11-28 End 面包屑导航 -->
+		<!-- JustFresh 2018-11-28 Begin 页面主体部分 -->
+		<nz-layout class="main">
+			<!-- JustFresh 2018-11-28 Begin 引入左侧导航菜单 -->
+			<nz-sider [nzWidth]="200">
+				<app-admin-left-nav class="left-nav"></app-admin-left-nav>
+			</nz-sider>
+			<!-- JustFresh 2018-11-28 Ends 引入左侧导航菜单 -->
+			<nz-content class="content">
+				<!-- JustFresh 2018-11-30 Begin 统计导航 -->
+				<div nz-row nzGutter="16" class="statis">
+					<div nz-col class="gutter-row" nzSpan="6">
+					  <div class="gutter-box article">
+							<i nz-icon type="font-colors" theme="outline" class="pull-left"></i>
+							<div class="desc pull-left">
+								<a [routerLink]="['/admin/article/list']" [queryParams]="{module:'article',opt:'article'}">
+									<h5>文章数量</h5>
+									<p>{{count.articleCount}}</p>
+								</a>
+							</div>
+							<div class="clearfix"></div>
+					  </div>
+					</div>
+					<div nz-col class="gutter-row" nzSpan="6">
+						<div class="gutter-box channel">
+							<i nz-icon type="bars" theme="outline" class="pull-left"></i>
+							<div class="desc pull-left">
+								<a [routerLink]="['/admin/channel/list']" [queryParams]="{module:'index',opt:'channel'}">
+									<h5>栏目数量</h5>
+									<p>{{count.channelCount}}</p>
+								</a>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+					<div nz-col class="gutter-row" nzSpan="6">
+						<div class="gutter-box adv">
+							<i nz-icon type="sound" theme="outline" class="pull-left"></i>
+							<div class="desc pull-left">
+								<a [routerLink]="['/admin/adv/list']" [queryParams]="{module:'index',opt:'adv'}">
+									<h5>广告数量</h5>
+									<p>{{count.advCount}}</p>
+								</a>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+					<div nz-col class="gutter-row" nzSpan="6">
+						<div class="gutter-box comment">
+							<i nz-icon type="message" theme="outline" class="pull-left"></i>
+							<div class="desc pull-left">
+								<a [routerLink]="['/admin/comment/list']" [queryParams]="{module:'article',opt:'comment'}">
+									<h5>评论数量</h5>
+									<p>{{count.commentCount}}</p>
+								</a>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+				</div>
+				<!-- JustFresh 2018-11-30 End 统计导航 -->
+				
+				<!-- JustFresh 2018-11-30 Begin 最近发表评论列表 -->
+				<div class="comments">
+					<div class="datagrid">
+						<div class="title">
+							<h4 class="pull-left"><i nz-icon type="message"></i> 最近添加用户</h4>
+							<div class="opts pull-right">
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<nz-table id="userTable" #ajaxTable nzBordered nzSize="small" nzShowSizeChanger [nzFrontPagination]="false" [nzData]="dataSet"
+						[nzLoading]="loading" [nzTotal]="total" [(nzPageIndex)]="pageNumber" [(nzPageSize)]="size" (nzPageIndexChange)="searchData()"
+						(nzPageSizeChange)="searchData(true)">
+							<thead (nzSortChange)="sort($event)" nzSingleSort>
+								<tr>
+									<th>登录名</th>
+									<th>昵称</th>
+									<th>联系电话</th>
+									<th>邮箱</th>
+									<th>添加时间</th>
+									<th>状态</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr *ngFor="let user of ajaxTable.data">
+									<td>{{user.username}}</td>
+									<td>{{user.nickName}}</td>
+									<td>{{user.userPhone}}</td>
+									<td>{{user.userEmail}}</td>
+									<td>{{user.createTime | date:"yyyy-MM-dd HH:mm"}}</td>
+									<td>
+										<nz-tag *ngIf="user.status==1" [nzColor]="'#87d068'">启用</nz-tag>
+										<nz-tag *ngIf="user.status==0" [nzColor]="'#f50'">禁用</nz-tag>
+									</td>
+								</tr>
+							</tbody>
+						</nz-table>
+					</div>
+				</div>
+				<!-- JustFresh 2018-11-30 End 最近发表评论列表 -->
+			</nz-content>
+		</nz-layout>
+		<!-- JustFresh 2018-11-28 End 页面主体部分 -->
+		<!-- JustFresh 2018-11-28 Begin 引入统一底部导航 -->
+		<app-admin-footer></app-admin-footer>
+		<!-- JustFresh 2018-11-28 End 引入统一底部导航 -->
+	</nz-content>
+</nz-layout>

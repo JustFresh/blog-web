@@ -1,0 +1,79 @@
+<nz-layout class="layout">
+	<!-- JustFresh 2018-11-28 Begin 引入统一顶部导航 -->
+	<app-admin-header></app-admin-header>
+	<!-- JustFresh 2018-11-28 End 引入统一顶部导航 -->
+	<nz-content class="body" *ngIf="article">
+		<!-- JustFresh 2018-11-28 Begin 面包屑导航 -->
+		<nz-breadcrumb>
+			<nz-breadcrumb-item><a [routerLink]="['/admin/index']" [queryParams]="{module:'index',opt:'index'}">控制台</a></nz-breadcrumb-item>
+			<nz-breadcrumb-item><a [routerLink]="['/admin/article/list']" [queryParams]="{module:'article',opt:'article'}">文章</a></nz-breadcrumb-item>
+			<nz-breadcrumb-item>文章管理</nz-breadcrumb-item>
+			<nz-breadcrumb-item>{{article.title}}</nz-breadcrumb-item>
+        </nz-breadcrumb>
+		<!-- JustFresh 2018-11-28 End 面包屑导航 -->
+		<!-- JustFresh 2018-11-28 Begin 页面主体部分 -->
+		<nz-layout class="main">
+			<!-- JustFresh 2018-11-28 Begin 引入左侧导航菜单 -->
+			<nz-sider [nzWidth]="200">
+				<app-admin-left-nav class="left-nav"></app-admin-left-nav>
+			</nz-sider>
+			<!-- JustFresh 2018-11-28 Ends 引入左侧导航菜单 -->
+			<nz-content class="content">
+				<form class="admin-form">
+					<div nz-row nzGutter="24">
+						<div class="form-group">
+							<input type="text" class="title form-ipt"  [(ngModel)]="article.title" name="title" placeholder="请输入文章标题" />
+						</div>
+						<div class="form-group">
+							<div class="editor">
+								<ckeditor name="content" [(ngModel)]="article.content" [config]="ckeConfig" debounce="500" (change)="changeContent($event)"></ckeditor>
+							</div>
+						</div>
+						<div class="form-group">
+							<label>缩略图：</label>
+							<input type="file" (change)="uploadImg('article',$event)" name="file" />
+							<img *ngIf="article.thumb" src="{{siteUrl}}{{article.thumb}}" alt="请上传缩略图" class="thumb" />
+						</div>
+						<div class="form-group">
+							<label>文章分类：</label>
+							<select class="form-select" [(ngModel)]="article.channel.id" name="channelId">
+								<option *ngFor="let item of channelSelect" [value]="item.id">{{item.channelName}}</option>
+							</select>
+							<label>推荐：</label>
+							<input type="radio" [(ngModel)]="article.isRecommend" name="isRecommend" value="1"  />是 
+							<input type="radio" [(ngModel)]="article.isRecommend" name="isRecommend" value="0" checked="checked" />否
+							<label>置顶：</label>
+							<input type="radio" [(ngModel)]="article.isTop" name="isTop" value="1"  />是 
+							<input type="radio" [(ngModel)]="article.isTop" name="isTop" value="0" checked="checked" />否
+						</div>
+						<div class="form-group">
+							<select name="status" class="form-select" [(ngModel)]="article.status">
+								<option *ngFor="let item of statusSelect" [value]="item.key">{{item.value}}</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label>关键字：</label>
+							<input type="text" class="keywords form-ipt" placeholder="请输入文章关键字" [(ngModel)]="article.keywords" name="keywords" />
+						</div>
+						<div class="form-group">
+							<label>简介：</label>
+							<textarea [(ngModel)]="article.abstracts" name="abstracts" class="abstracts form-textarea" placeholder="请输入文章简介"></textarea>
+						</div>
+						<div class="form-group">
+							<button nz-button="" (click)="sendForm()" nztype="primary" class="ant-btn ant-btn-primary">
+								提交
+							</button>
+							<button (click)="goBack()" nz-button="" nztype="default" class="ant-btn ant-btn-default">
+								返回上一步
+							</button>
+						</div>
+					</div>
+				</form>
+			</nz-content>
+		</nz-layout>
+		<!-- JustFresh 2018-11-28 End 页面主体部分 -->
+		<!-- JustFresh 2018-11-28 Begin 引入统一底部导航 -->
+		<app-admin-footer></app-admin-footer>
+		<!-- JustFresh 2018-11-28 End 引入统一底部导航 -->
+	</nz-content>
+</nz-layout>

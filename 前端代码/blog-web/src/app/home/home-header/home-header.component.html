@@ -1,0 +1,31 @@
+<div class="header-split-block"></div>
+<header>
+	<div class="jf-container">
+		<div class="logo pull-left"><a routerLink="/home" title="回到首页">Xiudoua-BLOG</a></div>
+		<div class="nav pull-left">
+			<ul>
+				<li routerLink="/home">
+					<a *ngIf="curChannelId == null" class="selected">首页</a>
+					<a *ngIf="curChannelId != null">首页</a>
+				</li>
+				<li [routerLink]="['/home/channel',channel.id]" [queryParams]="{curChannelId:channel.id}" *ngFor="let channel of headers">
+					<a *ngIf="curChannelId == channel.id" class="selected">{{channel.channelName}}</a>
+					<a *ngIf="curChannelId != channel.id">{{channel.channelName}}</a>
+				</li>
+			</ul>
+			<div class="clearfix"></div>
+		</div>
+		<div class="search pull-left">
+			<form>
+				<input name="keyword" type="text" placeholder="请输入搜索关键字" />
+				<a type="button" routerLink="/home/search" class="btn"><i nz-icon type="search"></i></a>
+			</form>
+		</div>
+		<div class="btns pull-right">
+			<a class="login-btn" routerLink="/home/login">登 录</a>
+			<a class="register-btn" routerLink="/home/register">注 册</a>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+</header>
+<router-outlet></router-outlet>

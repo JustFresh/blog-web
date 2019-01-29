@@ -1,0 +1,71 @@
+<nz-layout class="layout">
+	<!-- JustFresh 2018-11-28 Begin 引入统一顶部导航 -->
+	<app-admin-header></app-admin-header>
+	<!-- JustFresh 2018-11-28 End 引入统一顶部导航 -->
+	<nz-content class="body" *ngIf="channel">
+		<!-- JustFresh 2018-11-28 Begin 面包屑导航 -->
+		<nz-breadcrumb>
+			<nz-breadcrumb-item><a [routerLink]="['/admin/index']" [queryParams]="{module:'index',opt:'index'}">控制台</a></nz-breadcrumb-item>
+			<nz-breadcrumb-item><a [routerLink]="['/admin/channel/list']" [queryParams]="{module:'index',opt:'channel'}">栏目管理</a></nz-breadcrumb-item>
+			<nz-breadcrumb-item>{{channel.channelName}}</nz-breadcrumb-item>
+        </nz-breadcrumb>
+		<!-- JustFresh 2018-11-28 End 面包屑导航 -->
+		<!-- JustFresh 2018-11-28 Begin 页面主体部分 -->
+		<nz-layout class="main">
+			<!-- JustFresh 2018-11-28 Begin 引入左侧导航菜单 -->
+			<nz-sider [nzWidth]="200">
+				<app-admin-left-nav class="left-nav"></app-admin-left-nav>
+			</nz-sider>
+			<!-- JustFresh 2018-11-28 Ends 引入左侧导航菜单 -->
+			
+			<!-- JustFresh 2018-11-29 Begin 实际当前组件展示部分 -->
+			<nz-content class="content">
+				<form class="admin-form">
+					<div nz-row nzGutter="24">
+						<div class="form-group">
+							<input type="text" class="form-ipt" placeholder="请输入栏目名" [(ngModel)]="channel.channelName" name="channelName" />
+						</div>
+						<div class="form-group">
+							<select name="parentId" class="form-select" [(ngModel)]="channel.parentId">
+								<option *ngFor="let item of parents" [value]="item.id">{{item.channelName}}</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<input type="text" class="form-ipt" placeholder="请输入URL地址" [(ngModel)]="channel.uri" name="uri" />
+						</div>
+						<div class="form-group">
+							<input type="text" class="form-ipt" placeholder="请输入icon样式" [(ngModel)]="channel.icon" name="icon" />
+						</div>
+						<div class="form-group">
+							<input type="number" class="form-ipt" [(ngModel)]="channel.reorder" name="reorder" />
+						</div>
+						<div class="form-group">
+							<select name="status" class="form-select" [(ngModel)]="channel.isBlank">
+								<option *ngFor="let item of isBlankSelect" [value]="item.key">{{item.value}}</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<select name="status" class="form-select" [(ngModel)]="channel.status">
+								<option *ngFor="let item of statusSelect" [value]="item.key">{{item.value}}</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<button nz-button="" (click)="sendForm()" nztype="primary" class="ant-btn ant-btn-primary">
+								提交
+							</button>
+							<button (click)="goBack()" nz-button="" nztype="default" class="ant-btn ant-btn-default">
+								返回上一步
+							</button>
+						</div>
+					</div>
+				</form>
+			</nz-content>
+			<!-- JustFresh 2018-11-29 End 实际当前组件展示部分 -->
+			
+		</nz-layout>
+		<!-- JustFresh 2018-11-28 End 页面主体部分 -->
+		<!-- JustFresh 2018-11-28 Begin 引入统一底部导航 -->
+		<app-admin-footer></app-admin-footer>
+		<!-- JustFresh 2018-11-28 End 引入统一底部导航 -->
+	</nz-content>
+</nz-layout>

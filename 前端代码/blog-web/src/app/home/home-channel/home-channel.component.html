@@ -1,0 +1,40 @@
+<app-home-header></app-home-header>
+	<div class="jf-container">
+		<!-- JustFresh 2018-11-27 Begin 面包屑导航部分 -->
+		<nz-breadcrumb>
+		  <nz-breadcrumb-item>
+			<a [routerLink]="['/home']">首页</a>
+		  </nz-breadcrumb-item>
+		  <nz-breadcrumb-item>
+			{{channel.channelName}}
+		  </nz-breadcrumb-item>
+		</nz-breadcrumb>
+		<!-- JustFresh 2018-11-27 End 面包屑导航部分 -->
+		
+		<!-- JustFresh 2018-11-27 Begin 分页文章显示 -->
+		<div class="list">
+			<nz-list [nzDataSource]="dataSet" [nzItemLayout]="'vertical'" [nzRenderItem]="item" [nzPagination]="pagination"
+			[nzFooter]="footer">
+				<ng-template #item let-item>
+					<nz-list-item [nzActions]="[starAction,likeAction,msgAction]" [nzExtra]="extra">
+						<ng-template #starAction><i nz-icon type="eye"></i> {{item.clickNum}}</ng-template>
+						<ng-template #likeAction><i nz-icon type="clock-circle"></i> {{item.createTime | date:"yyyy-MM-dd HH:mm"}}</ng-template>
+						<ng-template #msgAction><i nz-icon type="bars"></i> {{item.channel.channelName}}</ng-template>
+						<nz-list-item-meta [nzTitle]="nzTitle" [nzDescription]="item.abstracts">
+							<ng-template #nzTitle><a [routerLink]="['/home/article',item.id]" [queryParams]="{curChannelId:item.channel.id}">{{item.title}}</a></ng-template>
+						</nz-list-item-meta>
+						<ng-template #extra>
+							<img width="272" class="thumb" alt="logo" src="{{siteUrl}}{{item.thumb}}">
+						</ng-template>
+					</nz-list-item>
+				</ng-template>
+				<ng-template #pagination>
+					<nz-pagination [nzPageIndex]="pageNumber" [nzTotal]="total" (nzPageIndexChange)="loadData($event,channel.id)"></nz-pagination>
+				</ng-template>
+			</nz-list>
+		</div>
+		<!-- JustFresh 2018-11-27 End 分页文章显示 -->
+	</div>
+<app-home-links></app-home-links>
+<app-home-footer></app-home-footer>
+<nz-back-top></nz-back-top>

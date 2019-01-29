@@ -1,0 +1,18 @@
+nz-content.body{padding:0 50px;}
+nz-breadcrumb{margin:15px 0;}
+.main{padding:24px 0; background: #fff;}
+.main .content{padding: 0 24px; min-height: 450px;}
+.main .left-nav{width: 200px}
+.statis{}
+.statis .gutter-row{margin-bottom: 15px;}
+.statis .gutter-row .gutter-box{color: #fff;height: 200px;}
+.statis .gutter-row .gutter-box i{display: block;font-size: 50px;margin: 70px 10px 80px 60px;}
+.statis .gutter-row .gutter-box .desc{margin: 70px 0px;}
+.statis .gutter-row .gutter-box .desc h5{color: #fff;font-size: 20px;margin: 0px;padding: 0px;}
+.statis .gutter-row .gutter-box .desc p{margin: 3px 0px 0px;padding: 0px;}
+.statis .gutter-row .gutter-box .desc p a{color: #fff;font-size: 20px;}
+.statis .gutter-row .article{background-color: #ff9900;}
+.statis .gutter-row .channel{background-color: #53a98c;}
+.statis .gutter-row .adv{background-color: #f30;}
+.statis .gutter-row .comment{background-color: #236A97;}
+a p{color: #fff;}

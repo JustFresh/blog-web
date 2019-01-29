@@ -1,0 +1,38 @@
+<div class="home-main jf-container">
+	<div nz-row nzGutter="24">
+        <div nz-col class="gutter-row" nzSpan="18">
+          <div class="gutter-box">
+				<!-- JustFresh 2018-11-26 Beign 前三条推荐部分 -->
+				<div class="tops" nz-row nzGutter="24">
+					<div nz-col class="gutter-row" nzSpan="24">
+						<h4><span><i nz-icon type="fire"></i> 置顶推荐</span></h4>
+					</div>
+					<div *ngIf="tops.length > 0">
+						<div nz-col class="gutter-row" nzSpan="8" *ngFor="let article of tops;let i = index">
+							<div class="block">
+								<img src="{{siteUrl}}{{article.thumb}}" title="{{article.title}}" alt="{{article.title}}" class="thumb pull-left" />
+								<div class="content pull-left">
+									<h5><a [routerLink]="['/home/article',article.id]" [queryParams]="{curChannelId:article.channel.id}">{{article.title | slice:0:12}}</a></h5>
+									<p>{{article.abstracts | slice:0:28}}</p>
+								</div>
+								<div class="num first" *ngIf="i==0">1</div>
+								<div class="num second" *ngIf="i==1">2</div>
+								<div class="num third" *ngIf="i==2">3</div>
+								<div class="clearfix"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- JustFresh 2018-11-26 End 前三条推荐部分 -->
+		  </div>
+		  <app-home-main-paging></app-home-main-paging>
+        </div>
+        <div nz-col class="gutter-row" nzSpan="6">
+			<div class="gutter-box">
+				<app-home-main-channels></app-home-main-channels>
+				<app-home-main-recommends></app-home-main-recommends>
+				<app-home-main-comments></app-home-main-comments>
+			</div>
+        </div>
+    </div>
+</div>

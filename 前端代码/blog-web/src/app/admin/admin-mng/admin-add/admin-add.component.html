@@ -1,0 +1,56 @@
+<nz-layout class="layout">
+	<!-- JustFresh 2018-11-28 Begin 引入统一顶部导航 -->
+	<app-admin-header></app-admin-header>
+	<!-- JustFresh 2018-11-28 End 引入统一顶部导航 -->
+	<nz-content class="body">
+		<!-- JustFresh 2018-11-28 Begin 面包屑导航 -->
+		<nz-breadcrumb>
+			<nz-breadcrumb-item><a [routerLink]="['/admin/index']" [queryParams]="{module:'index',opt:'index'}">控制台</a></nz-breadcrumb-item>
+			<nz-breadcrumb-item><a [routerLink]="['/admin/admin/list']" [queryParams]="{module:'index',opt:'admin'}">操作员管理</a></nz-breadcrumb-item>
+			<nz-breadcrumb-item>操作员添加</nz-breadcrumb-item>
+        </nz-breadcrumb>
+		<!-- JustFresh 2018-11-28 End 面包屑导航 -->
+		<!-- JustFresh 2018-11-28 Begin 页面主体部分 -->
+		<nz-layout class="main">
+			<!-- JustFresh 2018-11-28 Begin 引入左侧导航菜单 -->
+			<nz-sider [nzWidth]="200">
+				<app-admin-left-nav class="left-nav"></app-admin-left-nav>
+			</nz-sider>
+			<!-- JustFresh 2018-11-28 Ends 引入左侧导航菜单 -->
+			
+			<!-- JustFresh 2018-11-29 Begin 实际当前组件展示部分 -->
+			<nz-content class="content">
+				<form class="admin-form">
+					<div nz-row nzGutter="24">
+						<div class="form-group">
+							<input type="text" class="form-ipt" placeholder="请输入用户名" [(ngModel)]="admin.username" name="username" />
+						</div>
+						<div class="form-group">
+							<input type="text" class="form-ipt" placeholder="请输入昵称" [(ngModel)]="admin.nickName" name="nickName" />
+						</div>
+						<div class="form-group">
+							<select name="status" class="form-select" [(ngModel)]="admin.status">
+								<option value="1">启用</option>
+								<option value="0">禁用</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<button nz-button="" (click)="sendForm()" nztype="primary" class="ant-btn ant-btn-primary">
+								提交
+							</button>
+							<button (click)="goBack()" nz-button="" nztype="default" class="ant-btn ant-btn-default">
+								返回上一步
+							</button>
+						</div>
+					</div>
+				</form>
+			</nz-content>
+			<!-- JustFresh 2018-11-29 End 实际当前组件展示部分 -->
+			
+		</nz-layout>
+		<!-- JustFresh 2018-11-28 End 页面主体部分 -->
+		<!-- JustFresh 2018-11-28 Begin 引入统一底部导航 -->
+		<app-admin-footer></app-admin-footer>
+		<!-- JustFresh 2018-11-28 End 引入统一底部导航 -->
+	</nz-content>
+</nz-layout>

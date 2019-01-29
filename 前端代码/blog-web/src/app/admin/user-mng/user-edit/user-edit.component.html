@@ -1,0 +1,65 @@
+<nz-layout class="layout">
+	<!-- JustFresh 2018-11-28 Begin 引入统一顶部导航 -->
+	<app-admin-header></app-admin-header>
+	<!-- JustFresh 2018-11-28 End 引入统一顶部导航 -->
+	<nz-content class="body" *ngIf="user">
+		<!-- JustFresh 2018-11-28 Begin 面包屑导航 -->
+		<nz-breadcrumb>
+			<nz-breadcrumb-item><a [routerLink]="['/admin/index']" [queryParams]="{module:'index',opt:'index'}">控制台</a></nz-breadcrumb-item>
+			<nz-breadcrumb-item><a [routerLink]="['/admin/user/list']" [queryParams]="{module:'index',opt:'user'}">用户管理</a></nz-breadcrumb-item>
+			<nz-breadcrumb-item>{{user.nickName}}</nz-breadcrumb-item>
+        </nz-breadcrumb>
+		<!-- JustFresh 2018-11-28 End 面包屑导航 -->
+		<!-- JustFresh 2018-11-28 Begin 页面主体部分 -->
+		<nz-layout class="main">
+			<!-- JustFresh 2018-11-28 Begin 引入左侧导航菜单 -->
+			<nz-sider [nzWidth]="200">
+				<app-admin-left-nav class="left-nav"></app-admin-left-nav>
+			</nz-sider>
+			<!-- JustFresh 2018-11-28 Ends 引入左侧导航菜单 -->
+			<nz-content class="content">
+				<form class="admin-form">
+					<div nz-row nzGutter="24">
+						<div class="form-group">
+							<input type="text" class="form-ipt" placeholder="请输入用户名" [(ngModel)]="user.username" name="username" />
+						</div>
+						<div class="form-group">
+							<input type="text" class="form-ipt" placeholder="请输入昵称" [(ngModel)]="user.nickName" name="nickName" />
+						</div>
+						<div class="form-group">
+							<select name="sex" class="form-select" [(ngModel)]="user.sex">
+								<option *ngFor="let item of sexSelect" [value]="item.key">{{item.value}}</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<input type="text" class="form-ipt" placeholder="请输入联系电话" [(ngModel)]="user.userPhone" name="userPhone" />
+						</div>
+						<div class="form-group">
+							<input type="text" class="form-ipt" placeholder="请输入QQ号" [(ngModel)]="user.userQQ" name="userQQ" />
+						</div>
+						<div class="form-group">
+							<input type="text" class="form-ipt" placeholder="请输入电子邮箱" [(ngModel)]="user.userEmail" name="userEmail" />
+						</div>
+						<div class="form-group">
+							<select name="status" class="form-select" [(ngModel)]="user.status">
+								<option *ngFor="let item of statusSelect" [value]="item.key">{{item.value}}</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<button nz-button="" (click)="sendForm()" nztype="primary" class="ant-btn ant-btn-primary">
+								提交
+							</button>
+							<button (click)="goBack()" nz-button="" nztype="default" class="ant-btn ant-btn-default">
+								返回上一步
+							</button>
+						</div>
+					</div>
+				</form>
+			</nz-content>
+		</nz-layout>
+		<!-- JustFresh 2018-11-28 End 页面主体部分 -->
+		<!-- JustFresh 2018-11-28 Begin 引入统一底部导航 -->
+		<app-admin-footer></app-admin-footer>
+		<!-- JustFresh 2018-11-28 End 引入统一底部导航 -->
+	</nz-content>
+</nz-layout>

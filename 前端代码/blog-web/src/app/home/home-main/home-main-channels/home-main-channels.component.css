@@ -1,0 +1,4 @@
+.channels h4{border-bottom: 1px solid #f0f0f0;color: #3b9bd8;}
+.channels h4 span{color: #3b9bd8;display: inline-block;padding: 10px 5px;border-bottom: 2px solid #3b9bd8;margin-bottom: -1px;}
+.channels ul{margin: 10px;padding: 0px;}
+.channels ul li{list-style: none;margin-bottom: 7px;float: left;width: 50%;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;}

@@ -1,0 +1,13 @@
+.logo {
+  width: 120px;
+  height: 31px;
+  background: rgba(255,255,255,.2);
+  margin: 16px 28px 16px 0;
+  float: left;
+	line-height: 31px;
+	text-align: center;
+	color: #fff;
+}
+nz-header ul{line-height: 64px;}
+nz-header .btns a{margin-right: 10px;border: 1px dotted #FFFFFF;display: inline-block;width: 90px;height: 30px;text-align: center;line-height: 30px;color: #fff;}
+nz-header.btns a:hover{background-color: #236a97;border: 1px solid #236a97;}

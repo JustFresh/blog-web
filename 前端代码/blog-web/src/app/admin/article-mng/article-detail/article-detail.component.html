@@ -1,0 +1,48 @@
+<nz-layout class="layout">
+	<!-- JustFresh 2018-11-28 Begin 引入统一顶部导航 -->
+	<app-admin-header></app-admin-header>
+	<!-- JustFresh 2018-11-28 End 引入统一顶部导航 -->
+	<nz-content class="body" *ngIf="article">
+		<!-- JustFresh 2018-11-28 Begin 面包屑导航 -->
+		<nz-breadcrumb>
+			<nz-breadcrumb-item><a [routerLink]="['/admin/index']" [queryParams]="{module:'index',opt:'index'}">控制台</a></nz-breadcrumb-item>
+			<nz-breadcrumb-item><a [routerLink]="['/admin/article/list']" [queryParams]="{module:'article',opt:'article'}">文章管理</a></nz-breadcrumb-item>
+			<nz-breadcrumb-item>{{article.title}}</nz-breadcrumb-item>
+        </nz-breadcrumb>
+		<!-- JustFresh 2018-11-28 End 面包屑导航 -->
+		<!-- JustFresh 2018-11-28 Begin 页面主体部分 -->
+		<nz-layout class="main">
+			<!-- JustFresh 2018-11-28 Begin 引入左侧导航菜单 -->
+			<nz-sider [nzWidth]="200">
+				<app-admin-left-nav class="left-nav"></app-admin-left-nav>
+			</nz-sider>
+			<!-- JustFresh 2018-11-28 Ends 引入左侧导航菜单 -->
+			
+			<!-- JustFresh 2018-11-29 Begin 实际当前组件展示部分 -->
+			<nz-content class="content">
+				<nz-list nzBordered nzSize="large" [nzRenderItem]="item">
+					<nz-list-item [nzContent]="item"><b>标题：</b>{{article.title}}</nz-list-item>
+					<nz-list-item [nzContent]="item"><b>作者：</b>{{article.author}}</nz-list-item>
+					<nz-list-item [nzContent]="item"><b>关键字：</b>{{article.keywords}}</nz-list-item>
+					<nz-list-item [nzContent]="item"><b>来源：</b>{{article.title}}</nz-list-item>
+					<nz-list-item [nzContent]="item"><b>简介：</b>{{article.abstracts}}</nz-list-item>
+					<nz-list-item [nzContent]="item"><b>状态：</b>
+						<nz-tag *ngIf="article.status==1" [nzColor]="'#87d068'">启用</nz-tag>
+						<nz-tag *ngIf="article.status==0" [nzColor]="'#f50'">禁用</nz-tag>
+					</nz-list-item>
+					<nz-list-item [nzContent]="item"><b>添加时间：</b>{{article.createTime | date:"yyyy-MM-dd HH:mm"}}</nz-list-item>
+					<nz-list-item [nzContent]="item"><b>内容：</b>{{article.content}}</nz-list-item>
+				</nz-list>
+				<button (click)="goBack()" nz-button="" nztype="default" class="back-btn ant-btn ant-btn-default">
+					返回上一步
+				</button>
+			</nz-content>
+			<!-- JustFresh 2018-11-29 End 实际当前组件展示部分 -->
+			
+		</nz-layout>
+		<!-- JustFresh 2018-11-28 End 页面主体部分 -->
+		<!-- JustFresh 2018-11-28 Begin 引入统一底部导航 -->
+		<app-admin-footer></app-admin-footer>
+		<!-- JustFresh 2018-11-28 End 引入统一底部导航 -->
+	</nz-content>
+</nz-layout>

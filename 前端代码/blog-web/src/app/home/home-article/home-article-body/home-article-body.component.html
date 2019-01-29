@@ -1,0 +1,36 @@
+<section class="jf-container bread" *ngIf="article">
+	<!-- JustFresh 2018-11-27 Begin 面包屑导航 -->
+	<nz-breadcrumb>
+		<nz-breadcrumb-item>
+			<a [routerLink]="['/home']">首页</a>
+		</nz-breadcrumb-item>
+		<nz-breadcrumb-item>
+			<a [routerLink]="['/home/channel/article.channel.id']" [queryParams]="{curChannelId:article.channel.id}">{{article.channel.channelName}}</a>
+		</nz-breadcrumb-item>
+		<nz-breadcrumb-item>
+			{{article.title}}
+		</nz-breadcrumb-item>
+	</nz-breadcrumb>
+	<!-- JustFresh 2018-11-27 End 面包屑导航 -->
+</section>
+<section class="jf-container article-detail" *ngIf="article">
+	<div class="title">
+		<h3>{{article.title}}</h3>
+		<p>
+			<span class="author"><i nz-icon type="search"></i> {{article.author}}</span>
+			<span class="time"><i nz-icon type="clock-circle"></i> {{article.createTime | date:"yyyy-MM-dd HH:mm"}}</span>
+			<span class="click-num"><i nz-icon type="eye"></i> {{article.clickNum}}</span>
+		</p>
+	</div>
+	<div class="body" [innerHTML]=article.content></div>
+	<div class="links">
+		<div class="prev pull-left" *ngIf="prev">
+			上一篇：
+			<a [routerLink]="['/home/article',prev.id]" [queryParams]="{curChannelId:prev.channel.id}">{{prev.title}}</a>
+		</div>
+		<div class="next pull-right" *ngIf="next">
+			下一篇：
+			<a [routerLink]="['/home/article',next.id]" [queryParams]="{curChannelId:next.channel.id}">{{next.title}}</a>
+		</div>
+	</div>
+</section>

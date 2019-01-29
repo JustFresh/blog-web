@@ -1,0 +1,8 @@
+.bread{margin-top: 15px;}
+.article-detail{padding: 15px 0px;}
+.article-detail .title{text-align: center;border-bottom: 1px solid #f0f0f0;padding: 10px;}
+.article-detail .title p{font-size: 12px;color: #999;}
+.article-detail .title p span{margin-right: 15px;}
+.article-detail .title p span:last-child{margin-right: 0px;}
+.article-detail .body{margin: 20px 0px 15px;}
+.article-detail .body p{line-height: 25px;text-indent: 2em;}

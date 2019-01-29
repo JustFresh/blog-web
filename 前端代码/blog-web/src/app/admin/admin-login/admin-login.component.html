@@ -1,0 +1,18 @@
+<section class="login-bg">
+	<div class="login-block">
+		<h4><i nz-icon type="user"></i> 管理员登录</h4>
+		<form class="login-form">
+			<div class="form-group">
+				<label><i nz-icon type="user"></i></label>
+				<input type="text" name="username" [(ngModel)]="admin.username" placeholder="请输入登录用户名" />
+			</div>
+			<div class="form-group">
+				<label><i nz-icon type="lock"></i></label>
+				<input type="password" name="password" [(ngModel)]="admin.password" placeholder="请输入登录密码" />
+			</div>
+			<div class="form-btns">
+				<button nz-button nzBlock [nzType]="'primary'" (click)="login(admin)">登 录</button>
+			</div>
+		</form>
+	</div>
+</section>

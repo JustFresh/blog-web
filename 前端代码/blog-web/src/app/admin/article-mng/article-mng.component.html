@@ -1,0 +1,115 @@
+<nz-layout class="layout">
+	<!-- JustFresh 2018-11-28 Begin 引入统一顶部导航 -->
+	<app-admin-header></app-admin-header>
+	<!-- JustFresh 2018-11-28 End 引入统一顶部导航 -->
+	<nz-content class="body">
+		<!-- JustFresh 2018-11-28 Begin 面包屑导航 -->
+		<nz-breadcrumb>
+			<nz-breadcrumb-item><a [routerLink]="['/admin/index']" [queryParams]="{module:'index',opt:'index'}">控制台</a></nz-breadcrumb-item>
+			<nz-breadcrumb-item><a [routerLink]="['/admin/article/list']" [queryParams]="{module:'article',opt:'article'}">文章</a></nz-breadcrumb-item>
+			<nz-breadcrumb-item>文章管理</nz-breadcrumb-item>
+        </nz-breadcrumb>
+		<!-- JustFresh 2018-11-28 End 面包屑导航 -->
+		<!-- JustFresh 2018-11-28 Begin 页面主体部分 -->
+		<nz-layout class="main">
+			<!-- JustFresh 2018-11-28 Begin 引入左侧导航菜单 -->
+			<nz-sider [nzWidth]="200">
+				<app-admin-left-nav class="left-nav"></app-admin-left-nav>
+			</nz-sider>
+			<!-- JustFresh 2018-11-28 Ends 引入左侧导航菜单 -->
+			<nz-content class="content">
+				<!-- JustFresh 2018-12-04 Begin 分页条件查询表单部分 -->
+				<div class="conditions">
+					<form class="horizontal">
+						<div class="form-group">
+							<label>标题：</label>
+							<input type="" class="form-ipt" [(ngModel)]="title" name="title" placeholder="请输入标题">
+						</div>
+						<div class="form-group">
+							<label>关键字：</label>
+							<input type="" class="form-ipt" [(ngModel)]="keywords" name="keywords" placeholder="请输入关键字">
+						</div>
+						<div class="form-group">
+							<label>栏目：</label>
+							<select class="form-select" [(ngModel)]="channelId" name="channelId">
+								<option *ngFor="let item of channelSelect" [value]="item.id">{{item.channelName}}</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label>状态：</label>
+							<select class="form-select" [(ngModel)]="status" name="status">
+								<option value="">--请选择</option>
+								<option value="1">启用</option>
+								<option value="0">禁用</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<a class="btn" (click)="searchData()"><i nz-icon type="search"></i> 搜索</a>
+						</div>
+						<div class="clearfix"></div>
+					</form>
+				</div>
+				<!-- JustFresh 2018-12-04 End 分页条件查询表单部分 -->
+				<!-- JustFresh 2018-12-04 Begin 分页表格数据部分 -->
+				<div class="datagrid">
+					<div class="title">
+						<h4 class="pull-left"><i nz-icon type="file"></i> 文章数据列表</h4>
+						<div class="opts pull-right">
+							<button nz-button nzType="default" (click)="importExcel()"><i nz-icon type="file-excel"></i>导出当前页</button>
+							<button nz-button nzType="primary" [routerLink]="['/admin/article/add']" [queryParams]="{module:'article',opt:'article'}"><i nz-icon type="plus"></i>添加文章</button>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<nz-table id="articleTable" #ajaxTable nzBordered nzSize="small" nzShowSizeChanger [nzFrontPagination]="false" [nzData]="dataSet"
+					[nzLoading]="loading" [nzTotal]="total" [(nzPageIndex)]="pageNumber" [(nzPageSize)]="size" (nzPageIndexChange)="searchData()"
+					(nzPageSizeChange)="searchData(true)">
+						<thead (nzSortChange)="sort($event)" nzSingleSort>
+							<tr>
+								<th>缩略图</th>
+								<th>标题</th>
+								<th width="120px">关键字</th>
+								<th width="100px">栏目</th>
+								<th width="160px">添加时间</th>
+								<th width="60px">状态</th>
+								<th width="50px">推荐</th>
+								<th width="50px">置顶</th>
+								<th width="240px">操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr *ngFor="let item of ajaxTable.data">
+								<td><img *ngIf="item.thumb" src="{{siteUrl}}{{item.thumb}}" alt="无缩略图" class="thumb" /></td>
+								<td><a target="_blank" routerLink="/home/article/{{item.id}}">{{item.title}}</a></td>
+								<td>{{item.keywords}}</td>
+								<td>{{item.channel.channelName}}</td>
+								<td>{{item.createTime | date:"yyyy-MM-dd HH:mm"}}</td>
+								<td>
+									<nz-tag *ngIf="item.status==1" [nzColor]="'#87d068'">启用</nz-tag>
+									<nz-tag *ngIf="item.status==0" [nzColor]="'#f50'">禁用</nz-tag>
+								</td>
+								<td>
+									<nz-tag *ngIf="item.isRecommend==1" [nzColor]="'#87d068'">是</nz-tag>
+									<nz-tag *ngIf="item.isRecommend==0" [nzColor]="'#f50'">否</nz-tag>
+								</td>
+								<td>
+									<nz-tag *ngIf="item.isTop==1" [nzColor]="'#87d068'">是</nz-tag>
+									<nz-tag *ngIf="item.isTop==0" [nzColor]="'#f50'">否</nz-tag>
+								</td>
+								<td>
+									<button [routerLink]="['/admin/article/detail',item.id]" [queryParams]="{module:'article',opt:'article'}"  class="default">查看</button>
+									<button [routerLink]="['/admin/article/edit',item.id]" [queryParams]="{module:'article',opt:'article'}" class="primary">编辑</button>
+									<button (click)="delete(item.id)" class="danger">删除</button>
+								</td>
+							</tr>
+						</tbody>
+					</nz-table>
+				</div>
+				<!-- JustFresh 2018-12-04 End 分页表格数据部分 -->
+			</nz-content>
+		</nz-layout>
+		<!-- JustFresh 2018-11-28 End 页面主体部分 -->
+		<!-- JustFresh 2018-11-28 Begin 引入统一底部导航 -->
+		<app-admin-footer></app-admin-footer>
+		<!-- JustFresh 2018-11-28 End 引入统一底部导航 -->
+	</nz-content>
+</nz-layout>
